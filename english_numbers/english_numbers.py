@@ -1,5 +1,4 @@
 numbers_in_english = {
-    0: "zero",
     1: "one",
     2: "two",
     3: "three",
@@ -33,13 +32,33 @@ tens_in_english = {
 }
 
 
-def write_number_in_english(number: int) -> str:
-    if number > 19:
-        tens = number // 10 * 10
-        units = number % 10
-        if units:
-            return f"{tens_in_english[tens]}-{numbers_in_english[units]}"
-        else:
-            return tens_in_english[tens]
-    else:
+def hundred(number: int) -> str:
+    return f"{numbers_in_english[number]} hundred"
+
+
+def english_number(number: int) -> str:
+    if number <= 99:
+        return english_number_below_one_hundred(number)
+
+    hundreds = number // 100
+    rest = number - hundreds * 100
+
+    if rest == 0:
+        return hundred(hundreds)
+
+    return f"{hundred(hundreds)} and {english_number_below_one_hundred(rest)}"
+
+
+def english_number_below_one_hundred(number):
+    if number == 0:
+        return "zero"
+
+    if number in numbers_in_english:
         return numbers_in_english[number]
+
+    if number in tens_in_english:
+        return tens_in_english[number]
+
+    tens = number // 10
+    units = number - tens * 10
+    return f"{tens_in_english[tens * 10]}-{numbers_in_english[units]}"
