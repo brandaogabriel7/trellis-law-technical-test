@@ -87,6 +87,9 @@ def __english_number_below_one_thousand(number: int) -> str:
 
 
 def __english_number_below_one_hundred(number: int) -> str:
+    if number < 0:
+        raise ValueError("Number must be positive")
+
     if number == 0:
         return "zero"
 
