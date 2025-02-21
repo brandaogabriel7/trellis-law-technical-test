@@ -3,6 +3,11 @@ import pytest
 from english_numbers.english_numbers import english_number
 
 
+def test_error_when_number_is_too_large():
+    with pytest.raises(ValueError):
+        english_number(1000000000000000)
+
+
 def test_error_when_number_is_negative():
     with pytest.raises(ValueError):
         english_number(-1)
@@ -123,9 +128,8 @@ def test_numbers_from_100_to_999(number, number_in_english):
     (999999, "nine hundred and ninety-nine thousand nine hundred and ninety-nine"),
     (999999999, "nine hundred and ninety-nine million nine hundred and ninety-nine thousand nine hundred and ninety-nine"),
     (999999999999, "nine hundred and ninety-nine billion nine hundred and ninety-nine million nine hundred and ninety-nine thousand nine hundred and ninety-nine"),
-    (999999999999999, "nine hundred and ninety-nine trillion nine hundred and ninety-nine billion nine hundred and ninety-nine million nine hundred and ninety-nine thousand nine hundred and ninety-nine"),
-    (999999999999999999, "nine hundred and ninety-nine quadrillion nine hundred and ninety-nine trillion nine hundred and ninety-nine billion nine hundred and ninety-nine million nine hundred and ninety-nine thousand nine hundred and ninety-nine")
+    (999999999999999, "nine hundred and ninety-nine trillion nine hundred and ninety-nine billion nine hundred and ninety-nine million nine hundred and ninety-nine thousand nine hundred and ninety-nine")
 ])
-def test_numbers_from_1000_to_999999(number, number_in_english):
+def test_numbers_1000_and_up(number, number_in_english):
     assert english_number(
         number) == number_in_english, f"Expected '{number_in_english}' but got '{english_number(number)}'"

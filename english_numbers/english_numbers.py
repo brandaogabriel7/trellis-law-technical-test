@@ -37,15 +37,19 @@ ORDERS_OF_MAGNITUDE_IN_ENGLISH = {
     2: "million",
     3: "billion",
     4: "trillion",
-    5: "quadrillion"
 }
 
+MAX_NUMBER = 999999999999999
 
-def hundred(number: int) -> str:
+
+def __hundred(number: int) -> str:
     return f"{NUMBERS_IN_ENGLISH[number]} hundred"
 
 
 def english_number(number: int) -> str:
+    if number > MAX_NUMBER:
+        raise ValueError("Number is too large")
+
     if number < 1000:
         return __english_number_below_one_thousand(number)
 
@@ -81,9 +85,9 @@ def __english_number_below_one_thousand(number: int) -> str:
     rest = number % 100
 
     if rest == 0:
-        return hundred(hundreds)
+        return __hundred(hundreds)
 
-    return f"{hundred(hundreds)} and {__english_number_below_one_hundred(rest)}"
+    return f"{__hundred(hundreds)} and {__english_number_below_one_hundred(rest)}"
 
 
 def __english_number_below_one_hundred(number: int) -> str:
@@ -101,4 +105,5 @@ def __english_number_below_one_hundred(number: int) -> str:
 
     tens = number // 10
     units = number % 10
+
     return f"{TENS_IN_ENGLISH[tens * 10]}-{NUMBERS_IN_ENGLISH[units]}"
