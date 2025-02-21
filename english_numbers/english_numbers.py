@@ -1,4 +1,4 @@
-numbers_in_english = {
+NUMBERS_IN_ENGLISH = {
     1: "one",
     2: "two",
     3: "three",
@@ -20,7 +20,7 @@ numbers_in_english = {
     19: "nineteen"
 }
 
-tens_in_english = {
+TENS_IN_ENGLISH = {
     20: "twenty",
     30: "thirty",
     40: "forty",
@@ -31,34 +31,71 @@ tens_in_english = {
     90: "ninety"
 }
 
+ORDERS_OF_MAGNITUDE_IN_ENGLISH = {
+    0: "",
+    1: "thousand",
+    2: "million",
+    3: "billion",
+    4: "trillion",
+    5: "quadrillion"
+}
+
 
 def hundred(number: int) -> str:
-    return f"{numbers_in_english[number]} hundred"
+    return f"{NUMBERS_IN_ENGLISH[number]} hundred"
 
 
 def english_number(number: int) -> str:
+    if number < 1000:
+        return __english_number_below_one_thousand(number)
+
+    current_number = number
+    number_groups_stack = []
+
+    while current_number > 0:
+        number_groups_stack.append(current_number % 1000)
+        current_number = current_number // 1000
+
+    number_groups_stack.append(current_number)
+
+    result = ""
+    while len(number_groups_stack) > 0:
+        number_group = number_groups_stack.pop()
+        order_of_magnitude = len(number_groups_stack)
+        if number_group == 0:
+            continue
+
+        if result != "":
+            result += " "
+
+        result += f"{__english_number_below_one_thousand(number_group)} {ORDERS_OF_MAGNITUDE_IN_ENGLISH[order_of_magnitude]}"
+
+    return result.strip()
+
+
+def __english_number_below_one_thousand(number: int) -> str:
     if number <= 99:
-        return english_number_below_one_hundred(number)
+        return __english_number_below_one_hundred(number)
 
     hundreds = number // 100
-    rest = number - hundreds * 100
+    rest = number % 100
 
     if rest == 0:
         return hundred(hundreds)
 
-    return f"{hundred(hundreds)} and {english_number_below_one_hundred(rest)}"
+    return f"{hundred(hundreds)} and {__english_number_below_one_hundred(rest)}"
 
 
-def english_number_below_one_hundred(number):
+def __english_number_below_one_hundred(number: int) -> str:
     if number == 0:
         return "zero"
 
-    if number in numbers_in_english:
-        return numbers_in_english[number]
+    if number in NUMBERS_IN_ENGLISH:
+        return NUMBERS_IN_ENGLISH[number]
 
-    if number in tens_in_english:
-        return tens_in_english[number]
+    if number in TENS_IN_ENGLISH:
+        return TENS_IN_ENGLISH[number]
 
     tens = number // 10
-    units = number - tens * 10
-    return f"{tens_in_english[tens * 10]}-{numbers_in_english[units]}"
+    units = number % 10
+    return f"{TENS_IN_ENGLISH[tens * 10]}-{NUMBERS_IN_ENGLISH[units]}"
