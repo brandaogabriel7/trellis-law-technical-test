@@ -42,10 +42,6 @@ ORDERS_OF_MAGNITUDE_IN_ENGLISH = {
 MAX_NUMBER = 999999999999999
 
 
-def __hundred(number: int) -> str:
-    return f"{NUMBERS_IN_ENGLISH[number]} hundred"
-
-
 def get_english_number(number: int) -> str:
     if number > MAX_NUMBER:
         raise ValueError("Number is too large")
@@ -72,7 +68,8 @@ def get_english_number(number: int) -> str:
         if result != "":
             result += " "
 
-        result += f"{__get_english_number_below_one_thousand(number_group)} {ORDERS_OF_MAGNITUDE_IN_ENGLISH[order_of_magnitude]}"
+        result += f"{__get_english_number_below_one_thousand(number_group)} {ORDERS_OF_MAGNITUDE_IN_ENGLISH[order_of_magnitude]}".strip(
+        )
 
     return result.strip()
 
@@ -85,9 +82,9 @@ def __get_english_number_below_one_thousand(number: int) -> str:
     rest = number % 100
 
     if rest == 0:
-        return __hundred(hundreds)
+        return f"{NUMBERS_IN_ENGLISH[hundreds]} hundred"
 
-    return f"{__hundred(hundreds)} and {__get_english_number_below_one_hundred(rest)}"
+    return f"{NUMBERS_IN_ENGLISH[hundreds]} hundred and {__get_english_number_below_one_hundred(rest)}"
 
 
 def __get_english_number_below_one_hundred(number: int) -> str:
