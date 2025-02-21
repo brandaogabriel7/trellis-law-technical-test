@@ -1,21 +1,31 @@
 import pytest
 
-from english_numbers.english_numbers import english_number
+from english_numbers.english_numbers import get_english_number
 
 
 def test_error_when_number_is_too_large():
     with pytest.raises(ValueError):
-        english_number(1000000000000000)
+        get_english_number(1000000000000000)
 
 
 def test_error_when_number_is_negative():
     with pytest.raises(ValueError):
-        english_number(-1)
+        get_english_number(-1)
 
 
-@pytest.mark.parametrize("number,number_in_english", [(0, "zero"), (1, "one"), (2, "two"), (3, "three"), (4, "four"), (5, "five"), (6, "six"), (7, "seven"), (8, "eight"), (9, "nine")])
+@pytest.mark.parametrize("number,number_in_english", [
+    (0, "zero"),
+    (1, "one"),
+    (2, "two"),
+    (3, "three"),
+    (4, "four"),
+    (5, "five"),
+    (6, "six"),
+    (7, "seven"),
+    (8, "eight"),
+    (9, "nine")])
 def test_numbers_from_0_to_9(number, number_in_english):
-    assert english_number(number) == number_in_english
+    assert get_english_number(number) == number_in_english
 
 
 @pytest.mark.parametrize("number,number_in_english", [
@@ -30,8 +40,8 @@ def test_numbers_from_0_to_9(number, number_in_english):
     (18, "eighteen"),
     (19, "nineteen")])
 def test_numbers_from_10_to_19(number, number_in_english):
-    assert english_number(
-        number) == number_in_english, f"Expected '{number_in_english}' but got '{english_number(number)}'"
+    assert get_english_number(
+        number) == number_in_english, f"Expected '{number_in_english}' but got '{get_english_number(number)}'"
 
 
 @pytest.mark.parametrize("number,number_in_english", [
@@ -58,8 +68,8 @@ def test_numbers_from_10_to_19(number, number_in_english):
     (99, "ninety-nine")
 ])
 def test_numbers_from_20_to_99(number, number_in_english):
-    assert english_number(
-        number) == number_in_english, f"Expected '{number_in_english}' but got '{english_number(number)}'"
+    assert get_english_number(
+        number) == number_in_english, f"Expected '{number_in_english}' but got '{get_english_number(number)}'"
 
 
 @pytest.mark.parametrize("number,number_in_english", [
@@ -82,8 +92,8 @@ def test_numbers_from_20_to_99(number, number_in_english):
     (999, "nine hundred and ninety-nine")
 ])
 def test_numbers_from_100_to_999(number, number_in_english):
-    assert english_number(
-        number) == number_in_english, f"Expected '{number_in_english}' but got '{english_number(number)}'"
+    assert get_english_number(
+        number) == number_in_english, f"Expected '{number_in_english}' but got '{get_english_number(number)}'"
 
 
 @pytest.mark.parametrize("number,number_in_english", [
@@ -131,5 +141,5 @@ def test_numbers_from_100_to_999(number, number_in_english):
     (999999999999999, "nine hundred and ninety-nine trillion nine hundred and ninety-nine billion nine hundred and ninety-nine million nine hundred and ninety-nine thousand nine hundred and ninety-nine")
 ])
 def test_numbers_1000_and_up(number, number_in_english):
-    assert english_number(
-        number) == number_in_english, f"Expected '{number_in_english}' but got '{english_number(number)}'"
+    assert get_english_number(
+        number) == number_in_english, f"Expected '{number_in_english}' but got '{get_english_number(number)}'"

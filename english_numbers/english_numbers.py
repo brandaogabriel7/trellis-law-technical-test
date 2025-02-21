@@ -46,12 +46,12 @@ def __hundred(number: int) -> str:
     return f"{NUMBERS_IN_ENGLISH[number]} hundred"
 
 
-def english_number(number: int) -> str:
+def get_english_number(number: int) -> str:
     if number > MAX_NUMBER:
         raise ValueError("Number is too large")
 
     if number < 1000:
-        return __english_number_below_one_thousand(number)
+        return __get_english_number_below_one_thousand(number)
 
     current_number = number
     number_groups_stack = []
@@ -72,14 +72,14 @@ def english_number(number: int) -> str:
         if result != "":
             result += " "
 
-        result += f"{__english_number_below_one_thousand(number_group)} {ORDERS_OF_MAGNITUDE_IN_ENGLISH[order_of_magnitude]}"
+        result += f"{__get_english_number_below_one_thousand(number_group)} {ORDERS_OF_MAGNITUDE_IN_ENGLISH[order_of_magnitude]}"
 
     return result.strip()
 
 
-def __english_number_below_one_thousand(number: int) -> str:
+def __get_english_number_below_one_thousand(number: int) -> str:
     if number <= 99:
-        return __english_number_below_one_hundred(number)
+        return __get_english_number_below_one_hundred(number)
 
     hundreds = number // 100
     rest = number % 100
@@ -87,10 +87,10 @@ def __english_number_below_one_thousand(number: int) -> str:
     if rest == 0:
         return __hundred(hundreds)
 
-    return f"{__hundred(hundreds)} and {__english_number_below_one_hundred(rest)}"
+    return f"{__hundred(hundreds)} and {__get_english_number_below_one_hundred(rest)}"
 
 
-def __english_number_below_one_hundred(number: int) -> str:
+def __get_english_number_below_one_hundred(number: int) -> str:
     if number < 0:
         raise ValueError("Number must be positive")
 
