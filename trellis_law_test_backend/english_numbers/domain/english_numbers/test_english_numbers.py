@@ -1,6 +1,6 @@
 import pytest
 
-from english_numbers.english_numbers import get_english_number
+from .english_numbers import get_english_number
 
 
 def test_error_when_number_is_too_large():
