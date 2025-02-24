@@ -68,8 +68,7 @@ def get_english_number(number: int) -> str:
         if result != "":
             result += " "
 
-        result += f"{__get_english_number_below_one_thousand(number_group)} {ORDERS_OF_MAGNITUDE_IN_ENGLISH[order_of_magnitude]}".strip(
-        )
+        result += f"{__get_english_number_below_one_thousand(number_group)} {ORDERS_OF_MAGNITUDE_IN_ENGLISH[order_of_magnitude]}".strip()
 
     return result.strip()
 
