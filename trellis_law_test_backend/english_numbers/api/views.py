@@ -27,8 +27,8 @@ def __get_num_in_english(request):
         num_in_english = get_english_number(number)
         
         return Response({"status": "ok", "num_in_english": num_in_english})
-    except ValueError:
-        return Response({"status": "error", "message": "Invalid number"}, status=400)
+    except ValueError as ve:
+        return Response({"status": "error", "message": ve.args[0]}, status=400)
 
 def __post_num_in_english(request):
     number_param = request.data.get('number')
@@ -45,5 +45,5 @@ def __post_num_in_english(request):
         
         num_in_english = get_english_number(number)
         return Response({"status": "ok", "num_in_english": num_in_english})
-    except ValueError:
-        return Response({"status": "error", "message": "Invalid number"}, status=400)
+    except ValueError as ve:
+        return Response({"status": "error", "message": ve.args[0]}, status=400)
