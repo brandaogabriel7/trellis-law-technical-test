@@ -37,7 +37,7 @@ def test_get_numInEnglish_invalidNumber(api_client):
     response = api_client.get(f'{url}?number=invalid')
 
     assert response.status_code == 400
-    assert response.json() == {"status": "error", "message": "Invalid number"}
+    assert response.json() == {"status": "error", "message": "Value is not a valid integer"}
 
 @pytest.mark.parametrize("number,expected", num_in_english_success_data())
 @override_settings(DELAY_TIME=.001) # override the delay time to speed up the test
