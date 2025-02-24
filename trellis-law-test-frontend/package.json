@@ -19,7 +19,8 @@
     "compression": "^1.8.0",
     "express": "^5.0.1",
     "sirv": "^3.0.1",
-    "vue": "^3.5.13"
+    "vue": "^3.5.13",
+    "vue-router": "^4.0.13"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",

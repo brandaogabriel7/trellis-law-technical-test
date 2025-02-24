@@ -1,6 +1,6 @@
-describe('Navigating to the home page', function () {
-  it('should navigate to home page', function () {
+describe('Landing page', function () {
+  it('should navigate to the /test page', function () {
     cy.visit('/');
-    cy.url().should('eq', Cypress.config().baseUrl + '/');
+    cy.url().should('eq', Cypress.config().baseUrl + '/test');
   });
 });
