@@ -15,7 +15,6 @@
     "cy:run": "cypress run"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.0.8",
     "compression": "^1.8.0",
     "express": "^5.0.1",
     "sirv": "^3.0.1",
@@ -23,7 +22,9 @@
     "vue-router": "^4.0.13"
   },
   "devDependencies": {
+    "@testing-library/cypress": "^10.0.3",
     "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/user-event": "^14.6.1",
     "@testing-library/vue": "^8.1.0",
     "@types/express": "^5.0.0",
     "@types/node": "^22.13.4",
