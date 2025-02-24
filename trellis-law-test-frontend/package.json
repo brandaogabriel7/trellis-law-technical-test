@@ -9,7 +9,9 @@
     "build:client": "vite build --outDir dist/client",
     "build:server": "vite build --ssr src/entry-server.ts --outDir dist/server",
     "preview": "cross-env NODE_ENV=production node server",
-    "check": "vue-tsc"
+    "check": "vue-tsc",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.8",
@@ -23,6 +25,7 @@
     "@types/node": "^22.13.4",
     "@vitejs/plugin-vue": "^5.2.1",
     "cross-env": "^7.0.3",
+    "cypress": "^14.0.3",
     "typescript": "~5.7.3",
     "vite": "^6.1.1",
     "vue-tsc": "^2.2.2"
