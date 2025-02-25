@@ -3,6 +3,7 @@ import EnglishNumbersPage from '../EnglishNumbersPage.vue';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 import * as api from '../../../services/api';
+import { AxiosError, AxiosRequestHeaders } from 'axios';
 
 vi.mock('../../../services/api');
 
@@ -91,6 +92,44 @@ describe('EnglishNumbersPage', () => {
       await screen.findByText(/loading/i);
 
       await screen.findByText(numInEnglish);
+    }
+  );
+
+  it.each([
+    { errorMessage: 'Number is too large', statusCode: 400 },
+    { errorMessage: 'Number must be positive', statusCode: 400 },
+    { errorMessage: 'Something went wrong', statusCode: 500 },
+  ])(
+    'should show error message $errorMessage. status: $statusCode',
+    async ({ errorMessage, statusCode }) => {
+      const error = new AxiosError();
+      error.response = {
+        status: statusCode,
+        data: {
+          status: 'error',
+          error: errorMessage,
+        },
+        statusText: 'Internal Server Error',
+        headers: {},
+        config: {
+          headers:
+            (new AxiosError().response?.headers as AxiosRequestHeaders) || {},
+        },
+      };
+      vi.spyOn(api, 'postEnglishNumber').mockRejectedValue(error);
+      const user = userEvent.setup();
+      render(EnglishNumbersPage);
+
+      const numberInput = screen.getByRole('spinbutton', { name: /number/i });
+      expect(numberInput).toBeInTheDocument();
+
+      await user.type(numberInput, '99999999999');
+
+      await user.click(screen.getByRole('radio', { name: /post/i }));
+
+      await user.click(screen.getByRole('button', { name: /submit/i }));
+
+      await screen.findByText(errorMessage);
     }
   );
 });

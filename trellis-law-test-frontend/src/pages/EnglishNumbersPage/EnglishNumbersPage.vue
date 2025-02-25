@@ -28,12 +28,12 @@ const onSubmit = async (number: number, method: 'get' | 'post') => {
       error.value = response.error;
     }
   } catch (err) {
-    if (err instanceof AxiosError) {
-      error.value =
-        err.response?.data.error || err.message || 'An error occurred';
-    } else {
-      error.value = 'An error occurred';
+    if (err instanceof AxiosError && err?.response?.data?.status === 'error') {
+      error.value = err.response?.data?.error;
     }
+    error.value = error.value
+      ? error.value
+      : 'An unexpected error occurred. Try again later';
   } finally {
     loading.value = false;
   }
