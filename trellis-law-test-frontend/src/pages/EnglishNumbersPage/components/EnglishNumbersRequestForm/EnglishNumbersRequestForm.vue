@@ -2,10 +2,9 @@
 import { ref } from 'vue';
 import FormMethodInput from '../FormMethodInput/FormMethodInput.vue';
 import FormNumberInput from '../../../../components/FormNumberInput/FormNumberInput.vue';
+import EnglishNumbersRequestFormEmits from './EnglishNumbersRequestFormEmits';
 
-const emit = defineEmits<{
-  submit: [number: number, method: 'get' | 'post'];
-}>();
+const emit = defineEmits<EnglishNumbersRequestFormEmits>();
 const number = ref<number | null>(null);
 const method = ref<'get' | 'post'>('get');
 

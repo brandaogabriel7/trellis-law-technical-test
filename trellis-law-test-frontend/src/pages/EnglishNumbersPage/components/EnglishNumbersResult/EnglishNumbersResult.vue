@@ -1,11 +1,8 @@
 <script setup lang="ts">
 import MessageCard from '../../../../components/MessageCard/MessageCard.vue';
+import EnglishNumbersResultProps from './EnglishNumbersResultProps';
 
-const { loading, result, error } = defineProps<{
-  loading: boolean;
-  result: string | null;
-  error: string | null;
-}>();
+const { loading, result, error } = defineProps<EnglishNumbersResultProps>();
 </script>
 <template>
   <div class="mt-4">
