@@ -7,7 +7,7 @@ describe('POST num_in_english', function () {
     cy.intercept(
       {
         method: 'POST',
-        url: `${Cypress.env('apiUrl')}/num_in_english/`,
+        url: `${Cypress.env('VITE_API_BASE_URL')}/num_in_english/`,
       },
       (req) => {
         const { number } = req.body;

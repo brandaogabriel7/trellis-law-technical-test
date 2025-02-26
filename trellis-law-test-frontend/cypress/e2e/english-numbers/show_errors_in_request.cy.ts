@@ -9,14 +9,14 @@ describe('show errors in request', function () {
     cy.intercept(
       {
         method: 'GET',
-        url: `${Cypress.env('apiUrl')}/num_in_english/*`,
+        url: `${Cypress.env('VITE_API_BASE_URL')}/num_in_english/*`,
       },
       errorResponse
     ).as('numInEnglishRequestGet');
     cy.intercept(
       {
         method: 'POST',
-        url: `${Cypress.env('apiUrl')}/num_in_english/`,
+        url: `${Cypress.env('VITE_API_BASE_URL')}/num_in_english/`,
       },
       errorResponse
     ).as('numInEnglishRequestPost');

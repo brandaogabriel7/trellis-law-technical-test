@@ -7,7 +7,7 @@ describe('GET num_in_english', function () {
     cy.intercept(
       {
         method: 'GET',
-        url: `${Cypress.env('apiUrl')}/num_in_english/*`,
+        url: `${Cypress.env('VITE_API_BASE_URL')}/num_in_english/*`,
       },
       (req) => {
         const { number } = req.query;
