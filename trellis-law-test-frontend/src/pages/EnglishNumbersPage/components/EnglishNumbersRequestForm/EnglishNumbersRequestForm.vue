@@ -19,7 +19,6 @@ const onSubmit = () => {
   <form @submit.prevent="onSubmit" class="space-y-4">
     <FormNumberInput
       v-model="number"
-      input-id="number-input"
       name="number"
       label="Number:"
       placeholder="Enter a number"
