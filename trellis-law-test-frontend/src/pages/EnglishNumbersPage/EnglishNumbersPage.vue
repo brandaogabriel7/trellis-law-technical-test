@@ -23,11 +23,14 @@ const onSubmit = async (number: number, method: 'get' | 'post') => {
     const response = await englishNumberFunction(number);
     if (response.status === 'ok' && response.num_in_english) {
       result.value = response.num_in_english;
+      error.value = null;
     }
     if (response.status === 'error' && response.error) {
       error.value = response.error;
+      result.value = null;
     }
   } catch (err) {
+    result.value = null;
     if (err instanceof AxiosError && err?.response?.data?.status === 'error') {
       error.value = err.response?.data?.error;
     }

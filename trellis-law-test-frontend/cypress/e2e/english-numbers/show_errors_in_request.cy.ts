@@ -2,15 +2,24 @@
 /// <reference types="@testing-library/cypress" />
 describe('show errors in request', function () {
   beforeEach(function () {
+    const errorResponse = {
+      statusCode: 500,
+      body: { status: 'error', error: 'This is an error message' },
+    };
     cy.intercept(
       {
-        url: `${Cypress.env('apiUrl')}/num_in_english*`,
+        method: 'GET',
+        url: `${Cypress.env('apiUrl')}/num_in_english/*`,
       },
+      errorResponse
+    ).as('numInEnglishRequestGet');
+    cy.intercept(
       {
-        statusCode: 500,
-        body: { status: 'error', error: 'This is an error message' },
-      }
-    ).as('numInEnglishRequest');
+        method: 'POST',
+        url: `${Cypress.env('apiUrl')}/num_in_english/`,
+      },
+      errorResponse
+    ).as('numInEnglishRequestPost');
 
     cy.visit('/test');
 
@@ -25,13 +34,12 @@ describe('show errors in request', function () {
 
     cy.get('@numberInput').type('9999999999999');
     cy.get('@submitButton').click();
-    cy.wait('@numInEnglishRequest');
+    cy.wait('@numInEnglishRequestPost');
     cy.findByText('This is an error message').should('exist');
 
     cy.get('@getRadio').click();
-
     cy.get('@submitButton').click();
-    cy.wait('@numInEnglishRequest');
+    cy.wait('@numInEnglishRequestGet');
     cy.findByText('This is an error message').should('exist');
   });
 });
