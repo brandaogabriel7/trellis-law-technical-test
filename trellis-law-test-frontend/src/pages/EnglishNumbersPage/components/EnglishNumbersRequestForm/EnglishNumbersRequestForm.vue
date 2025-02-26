@@ -31,7 +31,7 @@ const onSubmit = () => {
     </div>
     <div class="form-control">
       <h4 class="label-text">Method:</h4>
-      <label class="label cursor-pointer">
+      <label class="label cursor-pointer flex justify-start">
         <input
           v-model="method"
           type="radio"
@@ -39,9 +39,9 @@ const onSubmit = () => {
           value="get"
           class="radio radio-primary"
         />
-        <span class="label-text">GET</span>
+        <span class="label-text ml-2">GET</span>
       </label>
-      <label class="label cursor-pointer">
+      <label class="label cursor-pointer flex justify-start">
         <input
           v-model="method"
           type="radio"
@@ -49,7 +49,7 @@ const onSubmit = () => {
           value="post"
           class="radio radio-primary"
         />
-        <span class="label-text">POST</span>
+        <span class="label-text ml-2">POST</span>
       </label>
     </div>
     <button class="btn btn-primary w-full" type="submit">Submit</button>
