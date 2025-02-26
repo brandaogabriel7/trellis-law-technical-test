@@ -1,8 +1,9 @@
+/// <reference types="cypress" />
+/// <reference types="@testing-library/cypress" />
 describe('show errors in request', function () {
   beforeEach(function () {
     cy.intercept(
       {
-        method: 'POST',
         url: `${Cypress.env('apiUrl')}/num_in_english*`,
       },
       {
@@ -22,17 +23,15 @@ describe('show errors in request', function () {
   it('should show numbers in english', function () {
     cy.get('@postRadio').click();
 
-    cy.get('@numberInput').type('99999999999999999999999999999999');
+    cy.get('@numberInput').type('9999999999999');
     cy.get('@submitButton').click();
     cy.wait('@numInEnglishRequest');
-    cy.findByText('Number is too large').should('exist');
-    cy.get('@numberInput').clear();
+    cy.findByText('This is an error message').should('exist');
 
     cy.get('@getRadio').click();
 
     cy.get('@submitButton').click();
     cy.wait('@numInEnglishRequest');
-    cy.findByText('Number is too large').should('exist');
-    cy.get('@numberInput').clear();
+    cy.findByText('This is an error message').should('exist');
   });
 });

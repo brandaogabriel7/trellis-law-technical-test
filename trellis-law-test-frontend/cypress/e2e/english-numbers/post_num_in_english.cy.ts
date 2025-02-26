@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+/// <reference types="@testing-library/cypress" />
 import num_english_responses from '../../fixtures/num_in_english/num_in_english_responses.json';
 
 describe('POST num_in_english', function () {

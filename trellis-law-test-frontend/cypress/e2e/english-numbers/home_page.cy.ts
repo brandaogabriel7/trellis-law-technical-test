@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+/// <reference types="@testing-library/cypress" />
 describe('Landing page', function () {
   it('should navigate to the /test page', function () {
     cy.visit('/');
