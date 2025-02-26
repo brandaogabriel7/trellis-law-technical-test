@@ -44,12 +44,18 @@ const onSubmit = async (number: number, method: 'get' | 'post') => {
 </script>
 
 <template>
-  <main class="container mx-auto p-4">
-    <h1 class="text-3xl font-bold mb-4">English numbers</h1>
-    <EnglishNumbersRequestForm @submit="onSubmit" />
-  </main>
-  <aside>
-    <EnglishNumbersResult :loading="loading" :result="result" :error="error" />
-  </aside>
+  <div class="container mx-auto p-4 flex flex-col items-center md:w-1/2">
+    <main class="w-full">
+      <h1 class="text-3xl font-bold mb-4 text-center">English numbers</h1>
+      <EnglishNumbersRequestForm @submit="onSubmit" />
+    </main>
+    <section class="w-full mt-4">
+      <EnglishNumbersResult
+        :loading="loading"
+        :result="result"
+        :error="error"
+      />
+    </section>
+  </div>
   <Loading :is-loading="loading" />
 </template>
