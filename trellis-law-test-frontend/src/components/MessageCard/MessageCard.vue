@@ -1,10 +1,7 @@
 <script setup lang="ts">
-const { title, message, type, compact } = defineProps<{
-  compact?: boolean;
-  type: 'success' | 'error';
-  title: string;
-  message: string | null;
-}>();
+import MessageCardProps from './MessageCardProps';
+
+const { title, message, type, compact } = defineProps<MessageCardProps>();
 </script>
 
 <template>
