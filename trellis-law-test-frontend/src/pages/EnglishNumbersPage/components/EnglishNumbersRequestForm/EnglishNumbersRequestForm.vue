@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import FormNumberInput from './FormNumberInput.vue';
-import FormMethodInput from './FormMethodInput.vue';
+import FormMethodInput from '../FormMethodInput/FormMethodInput.vue';
+import FormNumberInput from '../../../../components/FormNumberInput/FormNumberInput.vue';
 
 const emit = defineEmits<{
   submit: [number: number, method: 'get' | 'post'];
@@ -17,7 +17,16 @@ const onSubmit = () => {
 </script>
 <template>
   <form @submit.prevent="onSubmit" class="space-y-4">
-    <FormNumberInput v-model="number" />
+    <FormNumberInput
+      v-model="number"
+      input-id="number-input"
+      name="number"
+      label="Number:"
+      placeholder="Enter a number"
+      min="0"
+      max="999999999999999"
+      required
+    />
     <FormMethodInput v-model="method" />
     <button class="btn btn-primary w-full" type="submit">Submit</button>
   </form>
