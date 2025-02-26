@@ -12,6 +12,7 @@ const { loading, result, error } = defineProps<{
     <MessageCard
       v-if="(!loading && result) || (!loading && error)"
       :type="result ? 'success' : 'error'"
+      :title="result ? 'Result' : 'Error'"
       :message="result || error"
       compact
     />

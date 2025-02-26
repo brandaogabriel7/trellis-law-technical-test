@@ -1,7 +1,8 @@
 <script setup lang="ts">
-const { type, message, compact } = defineProps<{
+const { title, message, type, compact } = defineProps<{
   compact?: boolean;
   type: 'success' | 'error';
+  title: string;
   message: string | null;
 }>();
 </script>
@@ -16,7 +17,7 @@ const { type, message, compact } = defineProps<{
     }"
   >
     <div class="card-body">
-      <h2 class="card-title">Result</h2>
+      <h2 class="card-title">{{ title }}</h2>
       <p>{{ message }}</p>
     </div>
   </div>
