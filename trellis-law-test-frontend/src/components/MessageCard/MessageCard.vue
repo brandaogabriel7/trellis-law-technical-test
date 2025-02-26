@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const { type, message } = defineProps<{
+const { type, message, compact } = defineProps<{
+  compact?: boolean;
   type: 'success' | 'error';
   message: string | null;
 }>();
@@ -8,7 +9,8 @@ const { type, message } = defineProps<{
 <template>
   <div
     :class="{
-      'card compact shadow-lg': true,
+      'card shadow-lg': true,
+      compact: compact,
       'bg-green-100 text-green-800': type === 'success',
       'bg-red-100 text-red-800': type === 'error',
     }"
