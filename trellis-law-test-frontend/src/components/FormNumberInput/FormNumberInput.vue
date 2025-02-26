@@ -3,7 +3,7 @@ import FormNumberInputProps from './FormNumberInputProps';
 
 const number = defineModel();
 const {
-  id = 'number-input',
+  id = 'my-default-number-input-id',
   label,
   placeholder,
   ...props
