@@ -22,8 +22,8 @@ const onSubmit = () => {
       name="number"
       label="Number:"
       placeholder="Enter a number"
-      min="0"
-      max="999999999999999"
+      :min="0"
+      :max="999999999999999"
       required
     />
     <FormMethodInput v-model="method" />

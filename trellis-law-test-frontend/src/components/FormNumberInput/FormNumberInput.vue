@@ -5,7 +5,6 @@ const number = defineModel();
 const {
   id = 'my-default-number-input-id',
   label,
-  placeholder,
   ...props
 } = defineProps<FormNumberInputProps>();
 </script>
@@ -13,7 +12,7 @@ const {
   <div class="form-control">
     <label :for="id" class="label">{{ label }}</label>
     <input
-      :id
+      :id="id"
       v-bind="props"
       v-model="number"
       type="number"
