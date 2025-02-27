@@ -5,9 +5,9 @@ This project is part of the hiring process for Trellis Law. The goal was to buil
 ## Table of contents
 
 - [Running the apps](#running-the-apps)
+  - [Running the whole app with docker-compose](#running-the-whole-app-with-docker-compose)
   - [Running the backend](#running-the-backend)
   - [Running the frontend](#running-the-frontend)
-  - [Running the whole app with docker-compose](#running-the-whole-app-with-docker-compose)
 - [Algorithm](#algorithm)
   - [Numbers from 0 to 19](#numbers-from-0-to-19)
   - [Numbers from 20 to 99](#numbers-from-20-to-99)
@@ -26,9 +26,35 @@ This project is part of the hiring process for Trellis Law. The goal was to buil
 
 You can run each app separately or run the whole app with docker-compose.
 
+### Running the whole app with docker-compose
+
+To see the whole application (frontend and backend) running together, you can use docker-compose.
+
+```bash
+# Make sure you're in the root folder of the project and run the following command
+docker-compose up -d
+```
+
+By default, the frontend runs in port `5173` and the backend runs in port `8000`.
+
 ### Running the backend
 
-For running the backend, it is recommended to use a virtual environment and Python version 3.12.8.
+#### With Docker
+
+```bash
+# Navigate to the backend folder
+cd trellis_law_test_backend
+
+# Build the Docker image
+docker build -t trellis-law-test-backend .
+
+# Run the Docker container
+docker run -d --name trellis-law-test-backend -p 8000:8000 trellis-law-test-backend
+```
+
+#### Without Docker
+
+For running the backend without Docker, it is recommended to use a virtual environment and Python version 3.12.8.
 
 1. Create a virtual environment:
 
@@ -53,7 +79,23 @@ By default, the backend runs in port `8000`.
 
 ### Running the frontend
 
-For running the frontend, you need to have Node.js installed (I used node 23.8.0).
+#### With Docker
+
+```bash
+# Navigate to the frontend folder
+cd trellis-law-test-frontend
+
+# Build the Docker image
+
+docker build -t trellis-law-test-frontend .
+
+# Run the Docker container
+docker run -d --name trellis-law-test-frontend -p 5173:5173 trellis-law-test-frontend
+```
+
+#### Without Docker
+
+For running the frontend without Docker , you need to have Node.js installed (I used node 23.8.0).
 
 ```bash
 # Navigate to the frontend folder
@@ -67,17 +109,6 @@ npm run dev
 ```
 
 By default, the frontend runs in port `5173`.
-
-### Running the whole app with docker-compose
-
-To see the whole application (frontend and backend) running together, you can use docker-compose.
-
-```bash
-# Make sure you're in the root folder of the project and run the following command
-docker-compose up -d
-```
-
-By default, the frontend runs in port `5173` and the backend runs in port `8000`.
 
 ## Algorithm
 
