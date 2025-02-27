@@ -4,6 +4,10 @@ This project is part of the hiring process for Trellis Law. The goal was to buil
 
 ## Table of contents
 
+- [Running the apps](#running-the-apps)
+  - [Running the backend](#running-the-backend)
+  - [Running the frontend](#running-the-frontend)
+  - [Running the whole app with docker-compose](#running-the-whole-app-with-docker-compose)
 - [Algorithm](#algorithm)
   - [Numbers from 0 to 19](#numbers-from-0-to-19)
   - [Numbers from 20 to 99](#numbers-from-20-to-99)
@@ -13,14 +17,67 @@ This project is part of the hiring process for Trellis Law. The goal was to buil
 - [Architecture](#architecture)
   - [Backend](#backend)
   - [Frontend](#frontend)
-- [Running the apps](#running-the-apps)
-  - [Running the backend](#running-the-backend)
-  - [Running the frontend](#running-the-frontend)
-  - [Running the whole app with docker-compose](#running-the-whole-app-with-docker-compose)
 - [Testing](#testing)
   - [Backend tests](#backend-tests)
   - [Frontend tests](#frontend-tests)
   - [End-to-end tests](#end-to-end-tests)
+
+## Running the apps
+
+You can run each app separately or run the whole app with docker-compose.
+
+### Running the backend
+
+For running the backend, it is recommended to use a virtual environment and Python version 3.12.8.
+
+1. Create a virtual environment:
+
+```bash
+# Navigate to the backend folder
+cd trellis_law_test_backend
+
+# Create a virtual environment
+python3 -m venv venv
+
+# Activate the virtual environment
+source venv/bin/activate
+
+# Install the dependencies
+pip install -r requirements.txt
+
+# Run the application
+python manage.py runserver
+```
+
+By default, the backend runs in port `8000`.
+
+### Running the frontend
+
+For running the frontend, you need to have Node.js installed (I used node 23.8.0).
+
+```bash
+# Navigate to the frontend folder
+cd trellis-law-test-frontend
+
+# Install the dependencies
+npm install
+
+# Run the application
+npm run dev
+```
+
+By default, the frontend runs in port `5173`.
+
+### Running the whole app with docker-compose
+
+To see the whole application (frontend and backend) running together, you can use docker-compose.
+
+```bash
+# Make sure you're in the root folder of the project and run the following command
+docker-compose up -d
+```
+
+By default, the frontend runs in port `5173` and the backend runs in port `8000`.
 
 ## Algorithm
 
@@ -80,63 +137,6 @@ For the backend tech stack, I used **Django, Django Rest Framework, and pytest**
 The frontend is a Vue.js application that allows the user to input a number, choose the HTTP method (GET or POST) and see the number written in English.
 
 For the frontend tech stack, I used **Vue.js, Axios, Vite, Vitest, Typescript, daisy-ui, and Tailwind CSS**.
-
-## Running the apps
-
-You can run each app separately or run the whole app with docker-compose.
-
-### Running the backend
-
-For running the backend, it is recommended to use a virtual environment and Python version 3.12.8.
-
-1. Create a virtual environment:
-
-```bash
-# Navigate to the backend folder
-cd trellis_law_test_backend
-
-# Create a virtual environment
-python3 -m venv venv
-
-# Activate the virtual environment
-source venv/bin/activate
-
-# Install the dependencies
-pip install -r requirements.txt
-
-# Run the application
-python manage.py runserver
-```
-
-By default, the backend runs in port `8000`.
-
-### Running the frontend
-
-For running the frontend, you need to have Node.js installed (I used node 23.8.0).
-
-```bash
-# Navigate to the frontend folder
-cd trellis-law-test-frontend
-
-# Install the dependencies
-npm install
-
-# Run the application
-npm run dev
-```
-
-By default, the frontend runs in port `5173`.
-
-### Running the whole app with docker-compose
-
-To see the whole application (frontend and backend) running together, you can use docker-compose.
-
-```bash
-# Make sure you're in the root folder of the project and run the following command
-docker-compose up -d
-```
-
-By default, the frontend runs in port `5173` and the backend runs in port `8000`.
 
 ## Testing
 
