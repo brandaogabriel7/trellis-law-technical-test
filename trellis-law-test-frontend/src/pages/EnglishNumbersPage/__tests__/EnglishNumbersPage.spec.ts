@@ -97,7 +97,7 @@ describe('EnglishNumbersPage', () => {
 
   it.each([
     { errorMessage: 'Number is too large', statusCode: 400 },
-    { errorMessage: 'Number must be positive', statusCode: 400 },
+    { errorMessage: 'Number cannot be negative', statusCode: 400 },
     { errorMessage: 'Something went wrong', statusCode: 500 },
   ])(
     'should show error message $errorMessage. status: $statusCode',

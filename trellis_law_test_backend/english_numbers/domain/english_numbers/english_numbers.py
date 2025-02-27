@@ -17,7 +17,7 @@ NUMBERS_IN_ENGLISH = {
     16: "sixteen",
     17: "seventeen",
     18: "eighteen",
-    19: "nineteen"
+    19: "nineteen",
 }
 
 TENS_IN_ENGLISH = {
@@ -28,7 +28,7 @@ TENS_IN_ENGLISH = {
     60: "sixty",
     70: "seventy",
     80: "eighty",
-    90: "ninety"
+    90: "ninety",
 }
 
 ORDERS_OF_MAGNITUDE_IN_ENGLISH = {
@@ -88,7 +88,7 @@ def __get_english_number_below_one_thousand(number: int) -> str:
 
 def __get_english_number_below_one_hundred(number: int) -> str:
     if number < 0:
-        raise ValueError("Number must be positive")
+        raise ValueError("Number cannot be negative")
 
     if number == 0:
         return "zero"
